@@ -5,7 +5,7 @@ using UnityEngine;
 public class Life : MonoBehaviour
 {
 	public int HP;
-	public int MaxHP;
+	public int StartingHP;
 	public bool IsDead => HP <= 0;
 	// Start is called before the first frame update
 	void Start()

@@ -8,7 +8,6 @@ public class Splitting : MonoBehaviour
 {
 
     private Life lifePool;
-    public int StartingHP;
     private double scaleFactor;
 
     // Start is called before the first frame update
@@ -32,12 +31,10 @@ public class Splitting : MonoBehaviour
         Vector3 offset = VectorUtils.RandomHorizontalUnitVector() * (float)scaleFactor/2;
 
         GameObject child1 = Instantiate(gameObject);
-        child1.GetComponent<Life>().MaxHP = lifePool.MaxHP / 2;
         child1.GetComponent<Life>().HP = lifePool.HP / 2;
         child1.GetComponent<Transform>().position += offset;
 
         GameObject child2 = Instantiate(gameObject);
-        child2.GetComponent<Life>().MaxHP = (lifePool.MaxHP + 1) / 2;
         child2.GetComponent<Life>().HP = (lifePool.HP + 1) / 2;
         child2.GetComponent<Transform>().position -= offset;
 
@@ -56,7 +53,6 @@ public class Splitting : MonoBehaviour
 
         // Combine life totals
         Life combinedLife = combined.GetComponent<Life>();
-        combinedLife.MaxHP = lifePool.MaxHP + otherLife.MaxHP;
         combinedLife.HP = lifePool.HP + otherLife.HP;
         combined.GetComponent<Splitting>().Start();
 
@@ -78,7 +74,7 @@ public class Splitting : MonoBehaviour
     private void ScaleVolumeAndMass()
     {
         Transform transform = GetComponent<Transform>();
-        double volFactor = (double)lifePool.MaxHP / StartingHP;
+        double volFactor = (double)lifePool.HP / lifePool.StartingHP;
         scaleFactor = Math.Pow(volFactor, (double) 1/3);
         transform.localScale = Vector3.one * (float) scaleFactor;
 
