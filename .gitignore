@@ -57,3 +57,6 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+# Silly auto-modifying config file
+[Pp]roject[Ss]ettings/[Pp]ackages/com.unity.probuilder/[Ss]ettings.json
