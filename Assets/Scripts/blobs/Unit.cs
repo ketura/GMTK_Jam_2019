@@ -10,6 +10,8 @@ public class Unit : MonoBehaviour
 	public SelectionType SelectionType;
 	public string Name;
 
+	public Transform SelectionAnchor;
+
 	private bool Selected;
 
 	// Start is called before the first frame update
