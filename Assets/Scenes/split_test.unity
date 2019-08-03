@@ -586,6 +586,7 @@ GameObject:
   - component: {fileID: 1521308382}
   - component: {fileID: 1521308381}
   - component: {fileID: 1521308380}
+  - component: {fileID: 1521308379}
   m_Layer: 0
   m_Name: Blob
   m_TagString: Blob
@@ -593,6 +594,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1521308379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521308378}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d60599ede358ee58fd367040f8ad16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LifePool: {fileID: 0}
+  StartingHP: 100
 --- !u!114 &1521308380
 MonoBehaviour:
   m_ObjectHideFlags: 0

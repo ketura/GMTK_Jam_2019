@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,15 +7,14 @@ using UnityEngine;
 public class Splitting : MonoBehaviour
 {
 
-    public Life LifePool;
+    private Life LifePool;
+    public int StartingHP;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (LifePool == null)
-        {
-            LifePool = GetComponent<Life>();
-        }
+        LifePool = GetComponent<Life>();
+        ScaleVolume();
     }
 
     // Update is called once per frame
@@ -47,7 +47,14 @@ public class Splitting : MonoBehaviour
 
         LifePool.MaxHP += otherLife.MaxHP;
         LifePool.HP += otherLife.HP;
-
+        ScaleVolume();
         Destroy(other);
+    }
+
+    private void ScaleVolume()
+    {
+        Transform transform = GetComponent<Transform>();
+        double scaleFactor = Math.Pow((double)LifePool.MaxHP / StartingHP, (double) 1 / 3);
+        transform.localScale = Vector3.one * (float) scaleFactor;
     }
 }
