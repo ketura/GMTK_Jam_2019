@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,81 +8,136 @@ using UnityEngine;
 public class Splitting : MonoBehaviour
 {
 
-    private Life lifePool;
-    private double scaleFactor;
+	private Life lifePool;
+	private double scaleFactor;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        lifePool = GetComponent<Life>();
-        ScaleVolumeAndMass();
-    }
+	private UnitController UController;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private int lastFrameHP = 0;
 
-    // Split the attached GameObject into two. Life is split evenly,
-    // everything else is copied.
-    public void Split()
-    {
+	// Start is called before the first frame update
+	void Awake()
+	{
+		lifePool = GetComponent<Life>();
+		ScaleVolumeAndMass();
+		UController = UnitController.Instance;
+	}
 
-        Vector3 offset = VectorUtils.RandomHorizontalUnitVector() * (float)scaleFactor/2;
+	// Update is called once per frame
+	void Update()
+	{
+		if (lastFrameHP != lifePool.HP)
+		{
+			ScaleVolumeAndMass();
+			lastFrameHP = lifePool.HP;
+		}
+	}
 
-        GameObject child1 = Instantiate(gameObject);
-        child1.GetComponent<Life>().HP = lifePool.HP / 2;
-        child1.GetComponent<Transform>().position += offset;
+	// Split the attached GameObject into two. Life is split evenly,
+	// everything else is copied.
+	public void Split()
+	{
+		if (lifePool.HP <= 1)
+			return;
 
-        GameObject child2 = Instantiate(gameObject);
-        child2.GetComponent<Life>().HP = (lifePool.HP + 1) / 2;
-        child2.GetComponent<Transform>().position -= offset;
+		Vector3 offset = VectorUtils.RandomHorizontalUnitVector() * (float)scaleFactor / 2;
+
+		GameObject child1 = Instantiate(gameObject);
+		child1.GetComponent<Life>().HP = lifePool.HP / 2;
+		child1.GetComponent<Transform>().position += offset;
+
+		GameObject child2 = Instantiate(gameObject);
+		child2.GetComponent<Life>().HP = (lifePool.HP + 1) / 2;
+		child2.GetComponent<Transform>().position -= offset;
+
+		Unit unit = GetComponent<Unit>();
+		UController.RemoveUnitFromSelection(unit);
+		UController.RemoveUnit(unit);
+
+		var target = unit.GetComponent<MoveableUnit>()?.Target;
+
+		unit = child1.GetComponent<Unit>();
+		UController.AddUnitToSelection(unit);
+		if (target != null)
+		{
+			target.AddTargetingUnit(unit);
+		}
 
 
-        Destroy(gameObject);
-    }
+		unit = child2.GetComponent<Unit>();
+		UController.AddUnitToSelection(unit);
+		if (target != null)
+		{
+			target.AddTargetingUnit(unit);
+		}
 
-    // Combine the attached GameObject with another one. Life and momenta are combined.
-    public void Combine(GameObject other)
-    {
-        // Actually just "eats" the other object
-        Life otherLife = other.GetComponent<Life>();
-        if (otherLife == null) return;
 
-        GameObject combined = Instantiate(gameObject);
+		Destroy(gameObject);
+	}
 
-        // Combine life totals
-        Life combinedLife = combined.GetComponent<Life>();
-        combinedLife.HP = lifePool.HP + otherLife.HP;
-        combined.GetComponent<Splitting>().Start();
+	// Combine the attached GameObject with another one. Life and momenta are combined.
+	public static void Combine(IEnumerable<Splitting> blobs)
+	{
+		if (blobs.Count() <= 1)
+			return;
+		// Actually just "eats" the other object
 
-        // Combine momenta
-        Rigidbody myBody = GetComponent<Rigidbody>();
-        Rigidbody otherBody = other.GetComponent<Rigidbody>();
-        if (myBody != null && otherBody != null)
-        {
-            Vector3 totalMomentum = myBody.mass * myBody.velocity + otherBody.mass * otherBody.velocity;
-            Rigidbody combinedBody = combined.GetComponent<Rigidbody>();
-            combinedBody.velocity = totalMomentum / combinedBody.mass;
-        }
 
-        // clean up
-        Destroy(other);
-        Destroy(gameObject);
-    }
+		GameObject combined = Instantiate(blobs.First().gameObject);
 
-    private void ScaleVolumeAndMass()
-    {
-        Transform transform = GetComponent<Transform>();
-        double volFactor = (double)lifePool.HP / lifePool.StartingHP;
-        scaleFactor = Math.Pow(volFactor, (double) 1/3);
-        transform.localScale = Vector3.one * (float) scaleFactor;
+		// Combine life totals
+		Life combinedLife = combined.GetComponent<Life>();
+		combinedLife.HP = blobs.Sum(x => x.lifePool.HP);
+		//combined.GetComponent<Splitting>().Start();
 
-        Rigidbody body = GetComponent<Rigidbody>();
-        if (body != null)
-        {
-            body.mass = (float)volFactor;
-        }
-    }
+		// Combine momenta
+		IEnumerable<Rigidbody> bodies = blobs.Select(x => x.GetComponent<Rigidbody>()).Where(x => x != null);
+
+		IEnumerable<Vector3> forces = bodies.Select(x => x.mass * x.velocity);
+		Vector3 totalMomentum = Vector3.zero;
+		foreach (var force in forces)
+		{
+			totalMomentum += force;
+		}
+		Rigidbody combinedBody = combined.GetComponent<Rigidbody>();
+		combinedBody.velocity = totalMomentum / combinedBody.mass;
+
+		UnitController UController = UnitController.Instance;
+
+		Unit combinedUnit = combined.GetComponent<Unit>();
+
+
+		var target = blobs.Select(x => x.GetComponent<MoveableUnit>().Target).FirstOrDefault();
+		if (target != null)
+		{
+			combinedUnit.GetComponent<MoveableUnit>().SetNewDestination(target);
+		}
+
+		// clean up
+		foreach (var blob in blobs.ToList())
+		{
+			var unit = blob.GetComponent<Unit>();
+			unit.GetComponent<MoveableUnit>()?.Target?.RemoveTargetingUnit(unit);
+			UController.RemoveUnitFromSelection(unit);
+			UController.RemoveUnit(unit);
+			Destroy(blob.gameObject);
+		}
+
+		UController.AddUnitToSelection(combinedUnit);
+
+	}
+
+	private void ScaleVolumeAndMass()
+	{
+		Transform transform = GetComponent<Transform>();
+		double volFactor = (double)lifePool.HP / lifePool.StartingHP;
+		scaleFactor = Math.Pow(volFactor, (double)1 / 3);
+		transform.localScale = Vector3.one * (float)scaleFactor;
+
+		Rigidbody body = GetComponent<Rigidbody>();
+		if (body != null)
+		{
+			body.mass = (float)volFactor;
+		}
+	}
 }

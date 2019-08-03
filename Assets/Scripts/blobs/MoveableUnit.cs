@@ -10,11 +10,20 @@ public class MoveableUnit : MonoBehaviour
 	public Waypoint Target;
 	public bool MovementActive = true;
 
+	public float DefaultArrivalThreshold = 0.1f;
+	public float MovementThreshold = 0.1f;
+	public float ArrivalThreshold = 0.1f;
+	public float ArrivalIncrement = 0.01f;
+
+	public bool DebugOutput = false;
+
 	private NavMeshAgent NavAgent;
 	private Unit BaseUnit;
 
+	private Vector3 LastFramePos;
+
 	// Start is called before the first frame update
-	void Start()
+	void Awake()
 	{
 		NavAgent = GetComponent<NavMeshAgent>();
 		BaseUnit = GetComponent<Unit>();
@@ -24,12 +33,40 @@ public class MoveableUnit : MonoBehaviour
 			SetNewDestination(Target);
 		}
 
+		LastFramePos = transform.position;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		NavAgent.isStopped = !MovementActive;
+
+		if (Target == null)
+		{
+			NavAgent.isStopped = true;
+			NavAgent.stoppingDistance = ArrivalThreshold;
+			return;
+		}
+			
+
+
+		if (Vector3.Distance(transform.position, Target.transform.position) <= ArrivalThreshold)
+		{
+			SetNewDestination(null);
+		}
+		else if (DebugOutput)
+		{
+			Debug.Log(gameObject.name);
+			Debug.Log($"\t{Vector3.Distance(transform.position, LastFramePos)}");
+		}
+
+		if(Vector3.Distance(transform.position, LastFramePos) <= MovementThreshold)
+		{
+			ArrivalThreshold += ArrivalIncrement;
+			NavAgent.stoppingDistance = ArrivalThreshold;
+		}
+
+		LastFramePos = transform.position;
 	}
 
 
@@ -42,19 +79,23 @@ public class MoveableUnit : MonoBehaviour
 
 		Target = waypoint;
 
-		if(waypoint == null)
+		if(Target == null)
 		{
 			NavAgent.isStopped = true;
+			NavAgent.stoppingDistance = ArrivalThreshold;
 		}
 		else
 		{
-			if(!waypoint.TargetingUnits.Contains(BaseUnit))
+			if(!Target.TargetingUnits.Contains(BaseUnit))
 			{
-				waypoint.AddTargetingUnit(BaseUnit);
+				Target.AddTargetingUnit(BaseUnit);
 			}
-
+			ArrivalThreshold = DefaultArrivalThreshold;
+			NavAgent.stoppingDistance = ArrivalThreshold;
 			NavAgent.SetDestination(Target.transform.position);
 			NavAgent.isStopped = false;
+
+			
 		}
 	}
 

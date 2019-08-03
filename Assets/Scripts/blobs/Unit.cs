@@ -27,14 +27,14 @@ public class Unit : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown("s"))
-		{
-			Select();
-		}
-		if (Input.GetKeyDown("d"))
-		{
-			Deselect();
-		}
+		//if (Input.GetKeyDown("s"))
+		//{
+		//	Select();
+		//}
+		//if (Input.GetKeyDown("d"))
+		//{
+		//	Deselect();
+		//}
 	}
 
 	public void Select()
@@ -47,10 +47,10 @@ public class Unit : MonoBehaviour
 
 	public void Deselect()
 	{
-		if (Selected)
-		{
+		//if (Selected)
+		//{
 			SetSelected(false);
-		}
+		//}
 	}
 
 	public void ToggleSelection()

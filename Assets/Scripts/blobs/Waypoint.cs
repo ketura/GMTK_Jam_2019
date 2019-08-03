@@ -23,6 +23,7 @@ public class Waypoint : MonoBehaviour
 	{
 		if(Initialized)
 		{
+			TargetingUnits.RemoveAll(x => x == null);
 			if(TargetingUnits.Count == 0)
 			{
 				Destroy(this.gameObject);
