@@ -38,8 +38,8 @@ public class Splitting : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Merge the attached GameObject with another one. Life is combined.
-    public void Merge(GameObject other)
+    // Combine the attached GameObject with another one. Life is combined.
+    public void Combine(GameObject other)
     {
         // Actually just "eats" the other object
         Life otherLife = other.GetComponent<Life>();
