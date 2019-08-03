@@ -16,7 +16,7 @@ namespace Utilities
 
                     if (instance == null)
                     {
-                        //Debug.LogErrorFormat("Couldn't find an instance of {0} in the scene.", typeof(T).FullName);
+                        Debug.LogErrorFormat("Couldn't find an instance of {0} in the scene.", typeof(T).FullName);
                     }
                     else
                     {
