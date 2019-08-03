@@ -9,6 +9,7 @@ public class FacePlayer : MonoBehaviour
     float distToNearest;
     GameObject target;
     static string PlayerTag ="Blob";
+    [SerializeField] GameObject defaultTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class FacePlayer : MonoBehaviour
     {
         Collider[] thingsInRadius = Physics.OverlapSphere(transform.position, radius);
         distToNearest = radius;
-        target = null;
+        target = defaultTarget;
         foreach (Collider c in thingsInRadius)
         {
             if (c.tag != PlayerTag)
