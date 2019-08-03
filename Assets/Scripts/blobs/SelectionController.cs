@@ -11,21 +11,74 @@ public class SelectionController : Singleton<SelectionController>
 {
 	public IMouseHandler SelectionMouseHandler;
 
-
+	public LayerMask ClickableMask;
 
 	private bool LeftDown = false;
 	private bool RightDown = false;
 	private bool MidDown = false;
 
+	private UnitController UController;
+
 	// Start is called before the first frame update
 	void Start()
 	{
-		
+		UController = UnitController.Instance;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		bool ctrl = Input.GetButton("Toggle");
+		bool shift = Input.GetButton("AddGroup");
+		bool alt = Input.GetButton("RemoveGroup");
+
+		if (Input.GetButtonDown("Select"))
+		{
+			Debug.Log("Clicking");
+			RaycastHit rayhit;
+
+			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayhit, Mathf.Infinity, ClickableMask))
+			{
+				Unit unit = rayhit.collider.GetComponentInParent<Unit>();
+				if(unit == null)
+				{
+					if(!ctrl && !shift && !alt)
+					{
+						UController.ClearSelection();
+					}
+					return;
+				}
+
+				if(ctrl)
+				{
+					UController.ToggleSelection(unit);
+				}
+				else if(alt)
+				{
+					UController.RemoveUnitFromSelection(unit);
+				}
+				else if(shift)
+				{
+					UController.AddUnitToSelection(unit);
+				}
+				else
+				{
+					UController.ClearSelection();
+					UController.AddUnitToSelection(unit);				}
+				
+
+			}
+
+		}
+		else if(Input.GetButton("Select"))
+		{
+
+		}
+
+
+
+
+		return;
 		bool Filter = EventSystem.current.IsPointerOverGameObject();
 		//need a more robust priority system.
 

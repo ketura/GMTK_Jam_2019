@@ -7,15 +7,17 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class MoveableUnit : MonoBehaviour
 {
-	public Transform Target;
+	public Waypoint Target;
 	public bool MovementActive = true;
 
 	private NavMeshAgent NavAgent;
+	private Unit BaseUnit;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		NavAgent = GetComponent<NavMeshAgent>();
+		BaseUnit = GetComponent<Unit>();
 
 		if(Target != null)
 		{
@@ -31,10 +33,29 @@ public class MoveableUnit : MonoBehaviour
 	}
 
 
-	public void SetNewDestination(Transform transform)
+	public void SetNewDestination(Waypoint waypoint)
 	{
-		Target = transform;
-		NavAgent.SetDestination(Target.position);
+		if(Target != null)
+		{
+			Target.RemoveTargetingUnit(BaseUnit);
+		}
+
+		Target = waypoint;
+
+		if(waypoint == null)
+		{
+			NavAgent.isStopped = true;
+		}
+		else
+		{
+			if(!waypoint.TargetingUnits.Contains(BaseUnit))
+			{
+				waypoint.AddTargetingUnit(BaseUnit);
+			}
+
+			NavAgent.SetDestination(Target.transform.position);
+			NavAgent.isStopped = false;
+		}
 	}
 
 }
