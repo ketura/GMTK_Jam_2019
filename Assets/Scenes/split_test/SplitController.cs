@@ -20,7 +20,7 @@ public class SplitController : MonoBehaviour
 
         if (Input.GetKeyDown("m"))
         {
-            MergeRandomBlobs();
+            CombineRandomBlobs();
         }
     }
 
@@ -33,12 +33,12 @@ public class SplitController : MonoBehaviour
         }
     }
 
-    void MergeRandomBlobs()
+    void CombineRandomBlobs()
     {
         GameObject[] blobs = GameObject.FindGameObjectsWithTag("Blob");
         if (blobs.Length < 2) return;
         int i = Random.Range(1, blobs.Length);
         int j = Random.Range(0, i);
-        blobs[i].GetComponent<Splitting>().Merge(blobs[j]);
+        blobs[i].GetComponent<Splitting>().Combine(blobs[j]);
     }
 }
