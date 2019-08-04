@@ -54,7 +54,7 @@ public class Splitting : MonoBehaviour
 		UController.RemoveUnitFromSelection(unit);
 		UController.RemoveUnit(unit);
 
-		var target = unit.GetComponent<MoveableUnit>()?.Target;
+		var target = unit.GetComponent<MoveableUnit>()?.Waypoint;
 
 		unit = child1.GetComponent<Unit>();
 		UController.AddUnitToSelection(unit);
@@ -168,7 +168,7 @@ public class Splitting : MonoBehaviour
 		Unit combinedUnit = combined.GetComponent<Unit>();
 
 
-		var target = blobs.Select(x => x.GetComponent<MoveableUnit>().Target).FirstOrDefault();
+		var target = blobs.Select(x => x.GetComponent<MoveableUnit>().Waypoint).FirstOrDefault();
 		if (target != null)
 		{
 			combinedUnit.GetComponent<MoveableUnit>().SetNewDestination(target);
@@ -178,7 +178,7 @@ public class Splitting : MonoBehaviour
 		foreach (var blob in blobs.ToList())
 		{
 			var unit = blob.GetComponent<Unit>();
-			unit.GetComponent<MoveableUnit>()?.Target?.RemoveTargetingUnit(unit);
+			unit.GetComponent<MoveableUnit>()?.Waypoint?.RemoveTargetingUnit(unit);
 			UController.RemoveUnitFromSelection(unit);
 			UController.RemoveUnit(unit);
 			Destroy(blob.gameObject);

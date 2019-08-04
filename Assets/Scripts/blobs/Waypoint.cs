@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
+	public GameObject Post;
+
 	public List<Unit> TargetingUnits
 	{
 		get;

@@ -7,13 +7,14 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class MoveableUnit : MonoBehaviour
 {
-	public Waypoint Target;
+	public Waypoint Waypoint;
+
 	public bool MovementActive = true;
 
 	public float DefaultArrivalThreshold = 0.1f;
-	public float MovementThreshold = 0.1f;
+	public float MovementThreshold = 0.01f;
 	public float ArrivalThreshold = 0.1f;
-	public float ArrivalIncrement = 0.01f;
+	public float ArrivalIncrement = 0.05f;
 
 	public bool DebugOutput = false;
 
@@ -28,9 +29,9 @@ public class MoveableUnit : MonoBehaviour
 		NavAgent = GetComponent<NavMeshAgent>();
 		BaseUnit = GetComponent<Unit>();
 
-		if(Target != null)
+		if(Waypoint != null)
 		{
-			SetNewDestination(Target);
+			SetNewDestination(Waypoint);
 		}
 
 		LastFramePos = transform.position;
@@ -41,7 +42,7 @@ public class MoveableUnit : MonoBehaviour
 	{
 		NavAgent.isStopped = !MovementActive;
 
-		if (Target == null)
+		if (Waypoint == null)
 		{
 			NavAgent.isStopped = true;
 			NavAgent.stoppingDistance = ArrivalThreshold;
@@ -50,7 +51,7 @@ public class MoveableUnit : MonoBehaviour
 			
 
 
-		if (Vector3.Distance(transform.position, Target.transform.position) <= ArrivalThreshold)
+		if (Vector3.Distance(transform.position, Waypoint.transform.position) <= ArrivalThreshold)
 		{
 			SetNewDestination(null);
 		}
@@ -72,31 +73,30 @@ public class MoveableUnit : MonoBehaviour
 
 	public void SetNewDestination(Waypoint waypoint)
 	{
-		if(Target != null)
+		if(Waypoint != null)
 		{
-			Target.RemoveTargetingUnit(BaseUnit);
+			Waypoint.RemoveTargetingUnit(BaseUnit);
 		}
 
-		Target = waypoint;
+		Waypoint = waypoint;
 
-		if(Target == null)
+		if(Waypoint == null)
 		{
 			NavAgent.isStopped = true;
 			NavAgent.stoppingDistance = ArrivalThreshold;
 		}
 		else
 		{
-			if(!Target.TargetingUnits.Contains(BaseUnit))
+			if(!Waypoint.TargetingUnits.Contains(BaseUnit))
 			{
-				Target.AddTargetingUnit(BaseUnit);
+				Waypoint.AddTargetingUnit(BaseUnit);
 			}
 			ArrivalThreshold = DefaultArrivalThreshold;
 			NavAgent.stoppingDistance = ArrivalThreshold;
-			NavAgent.SetDestination(Target.transform.position);
+			NavAgent.SetDestination(Waypoint.transform.position);
 			NavAgent.isStopped = false;
 
 			
 		}
 	}
-
 }

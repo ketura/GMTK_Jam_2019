@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class FacePlayer : MonoBehaviour
 {
-    [SerializeField] float radius;
-    [SerializeField] float speed;
-    float distToNearest;
+    public float SearchRadius;
+    public float RotationSpeed;
+	  public string PlayerTag = "Blob";
+
+	  float distToNearest;
     GameObject target;
-    static string PlayerTag ="Blob";
+    
     [SerializeField] GameObject defaultTarget;
     // Start is called before the first frame update
     void Start()
@@ -19,8 +21,8 @@ public class FacePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider[] thingsInRadius = Physics.OverlapSphere(transform.position, radius);
-        distToNearest = radius;
+        Collider[] thingsInRadius = Physics.OverlapSphere(transform.position, SearchRadius);
+        distToNearest = SearchRadius;
         target = defaultTarget;
         foreach (Collider c in thingsInRadius)
         {
@@ -45,7 +47,7 @@ public class FacePlayer : MonoBehaviour
             targetPos.y = transform.position.y;
             Vector3 targetDir = targetPos - transform.position;
 
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, speed, 0.0f);
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, RotationSpeed, 0.0f);
 
             transform.rotation = Quaternion.LookRotation(newDir);
         }

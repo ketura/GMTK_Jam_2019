@@ -138,9 +138,11 @@ public class UnitController : Singleton<UnitController>
 		}
 	}
 
-	public Waypoint SpawnWaypoint(Vector3 pos)
+	public Waypoint SpawnWaypoint(Vector3 pos, bool visible=true)
 	{
 		var go = Instantiate(WaypointPrefab, pos, Quaternion.identity);
-		return go.GetComponent<Waypoint>();
+		var waypoint = go.GetComponent<Waypoint>();
+		waypoint.Post.SetActive(visible);
+		return waypoint;
 	}
 }
