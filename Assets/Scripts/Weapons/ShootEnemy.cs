@@ -43,11 +43,13 @@ public class ShootEnemy : MonoBehaviour
                 }
 
             }
+            // print($"{gameObject} shooting at {target}");
             if (target != null)
             {
                 Weapon.Fire(target);
             }
         }
+        // else print("Not firing: autoattack disabled or weapon can't fire");
 
     }
 }
