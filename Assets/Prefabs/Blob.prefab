@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3134934476225646106}
   - component: {fileID: 8565931237787718116}
   - component: {fileID: 3555080259914242119}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UI
   m_TagString: Blob
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Waypoint: {fileID: 0}
   MovementActive: 1
-  baseSpeed: 0
+  baseSpeed: 10
   DefaultArrivalThreshold: 0.1
   MovementThreshold: 0.01
   ArrivalThreshold: 0.1
@@ -471,6 +471,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7183461138183724210}
     m_Modifications:
+    - target: {fileID: 3777224221899500879, guid: 67b8238811460764b90f4465c6033ebb,
+        type: 3}
+      propertyPath: m_Name
+      value: SelectionCircle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777224221899500879, guid: 67b8238811460764b90f4465c6033ebb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6659968772229611481, guid: 67b8238811460764b90f4465c6033ebb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -526,17 +536,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3777224221899500879, guid: 67b8238811460764b90f4465c6033ebb,
-        type: 3}
-      propertyPath: m_Name
-      value: SelectionCircle
-      objectReference: {fileID: 0}
-    - target: {fileID: 3777224221899500879, guid: 67b8238811460764b90f4465c6033ebb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7871862664301603934, guid: 67b8238811460764b90f4465c6033ebb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 67b8238811460764b90f4465c6033ebb, type: 3}
 --- !u!1 &7387164742090059404 stripped
 GameObject:
