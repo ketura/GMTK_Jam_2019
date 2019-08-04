@@ -19,7 +19,7 @@ public class CommandController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if(Input.GetButtonDown("Action"))
+		if(Input.GetButtonDown("Action") && !Input.GetButton("Select"))
 		{
 			Debug.Log("right clicking");
 			if (UController.SelectionCount == 0)

@@ -130,6 +130,13 @@ public class UnitController : Singleton<UnitController>
 	{
 		UpdateSelection(u, !u.Selected);
 	}
+	public void ToggleSelection(IEnumerable<Unit> units)
+	{
+		foreach(var unit in units)
+		{
+			ToggleSelection(unit);
+		}
+	}
 
 	public Waypoint SpawnWaypoint(Vector3 pos)
 	{
