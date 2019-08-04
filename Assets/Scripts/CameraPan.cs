@@ -44,6 +44,13 @@ public class CameraPan : MonoBehaviour
 
 			this.transform.Translate(-dx, 0, -dy, Space.World);
 		}
+		else
+		{
+			float dx = Input.GetAxis("Horizontal") * PanJump.x;
+			float dy = Input.GetAxis("Vertical") * PanJump.y;
+
+			this.transform.Translate(dx, 0, dy, Space.World);
+		}
 
 		if(Input.GetButtonUp("Pan"))
 		{
@@ -59,23 +66,6 @@ public class CameraPan : MonoBehaviour
 		if (Input.GetAxis("Mouse ScrollWheel") < 0)
 		{
 			CurrentZoom = Mathf.Clamp(CurrentZoom + ZoomStep, MinZoom, MaxZoom);
-		}
-
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
-		{
-			this.transform.Translate(-PanJump.x, 0, 0, Space.World);
-		}
-		if (Input.GetKeyDown(KeyCode.RightArrow))
-		{
-			this.transform.Translate(PanJump.x, 0, 0, Space.World);
-		}
-		if (Input.GetKeyDown(KeyCode.UpArrow))
-		{
-			this.transform.Translate(0, 0, PanJump.y, Space.World);
-		}
-		if (Input.GetKeyDown(KeyCode.DownArrow))
-		{
-			this.transform.Translate(0, 0, -PanJump.y, Space.World);
 		}
 
 		AttachedCamera.fieldOfView = CurrentZoom;
