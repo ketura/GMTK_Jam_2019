@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
     public int damage;
     public float fireCooldown;
     public float bulletVelocity;
-    private int lastFired;
+    private float lastFired;
     public bool CanFire => Time.time > lastFired + fireCooldown;
 
     public void Start()
