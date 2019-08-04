@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour
 {
-    public void GotoMainMenu
+    public void GotoMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("mainmenu");
     }
 
     public void GotoControlDescription()
     {
-        SceneManager.LoadScene("ControlsExplanation");
+        SceneManager.LoadScene("controlsexplanation");
     }
 	
 	public void GotoBackstory()
@@ -27,7 +25,7 @@ public class SceneSwitcher : MonoBehaviour
 	
 	public void ExitGame()
     {
-        //SceneManager.LoadScene("Tutorial level");
+        Application.Quit();//SceneManager.LoadScene("Tutorial level");
     }
 }
 
