@@ -47,7 +47,7 @@ public class Weapon : MonoBehaviour
         if (bullet.GetComponent<Rigidbody>().useGravity)
         {
             float dt = dr.magnitude / bulletVelocity;
-            Vector3 dropoff = Physics.gravity * dt;
+            Vector3 dropoff = Physics.gravity * dt*dt / 2;
             bullet.GetComponent<Rigidbody>().velocity -= dropoff / dt;
         }
 
