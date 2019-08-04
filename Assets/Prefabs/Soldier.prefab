@@ -14712,6 +14712,7 @@ GameObject:
   - component: {fileID: 1055425129357524873}
   - component: {fileID: 2251573548362508375}
   - component: {fileID: 6749595267047391593}
+  - component: {fileID: 6368131350911898067}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Enemy
@@ -14851,6 +14852,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e309799984db437439a06f20408f5b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6368131350911898067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5642807095505705831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cdabbf31e00a2fe8bf74687df05478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1692123624466640584, guid: 467bd5a61b587bcfeb244fd66ebd08db,
+    type: 3}
+  muzzle: {fileID: 6136681747208907761}
+  damage: 1
+  fireCooldown: 1
+  bulletVelocity: 300
 --- !u!1 &6235913401916605749
 GameObject:
   m_ObjectHideFlags: 0

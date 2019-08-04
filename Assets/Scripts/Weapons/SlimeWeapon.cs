@@ -7,7 +7,8 @@ using UnityEngine;
 public class SlimeWeapon : Weapon
 {
     public int LifeCost;
-    public float DamagePerLife;
+    public float BonusDamagePerLife;
+    public float BlobSpawnChance;
     public Life lifePool;
 
     void Start()
@@ -21,7 +22,7 @@ public class SlimeWeapon : Weapon
 
     public override int Damage()
     {
-        return (int) Math.Floor((float) GetComponent<Life>().HP / DamagePerLife);
+        return (int) Math.Floor((float) GetComponent<Life>().HP / BonusDamagePerLife) + damage;
     }
 
     public override void Fire(GameObject target)
