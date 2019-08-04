@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f670f7ea32186e11eafe1aef86d07f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SearchRadius: 0
+  SearchRadius: 6
   Tag: Enemy
   defaultTarget: {fileID: 0}
   AutoAttack: 1
