@@ -14,21 +14,21 @@ public class ExitHandler : Singleton<ExitHandler>
 #endif
     }
 
-    public void GracefulExit()
+    public void GracefulExit(float time)
     {
-        StartCoroutine(TimedExit(0.5f));
+        StartCoroutine(TimedExit(time));
     }
 
     bool exiting = false;
     IEnumerator TimedExit(float time)
     {
-        if (!exiting)
-        {
+        //if (!exiting)
+        //{
             exiting = true;
             yield return new WaitForSeconds(time);
             InstantExit();
             //handle graceful exiting here
             //SceneManager.LoadScene("credits");
-        }
+        //}
     }
 }

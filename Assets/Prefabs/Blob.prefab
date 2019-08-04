@@ -333,7 +333,6 @@ MonoBehaviour:
   LifeCost: 3
   DamagePerLife: 0
   lifePool: {fileID: 0}
->>>>>>> 91e84640c16df98df9acdfc1c175aeaaab869167
 --- !u!1 &7183461138183724211
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,11 +8,16 @@ public class SceneSwitcher : MonoBehaviour
         SceneManager.LoadScene("mainmenu");
     }
 
-    public void GotoControlDescription()
-    {
-        SceneManager.LoadScene("controlsexplanation");
-    }
-	
+	public void GotoControlDescription()
+	{
+		SceneManager.LoadScene("controlsexplanation");
+	}
+
+	public void GotoCredits()
+	{
+		SceneManager.LoadScene("Credits");
+	}
+
 	public void GotoBackstory()
     {
         SceneManager.LoadScene("Backstory");
@@ -25,7 +30,7 @@ public class SceneSwitcher : MonoBehaviour
 	
 	public void ExitGame()
     {
-        Application.Quit();//SceneManager.LoadScene("Tutorial level");
+		ExitHandler.Instance.GracefulExit(1.0f);
     }
 }
 
