@@ -29,7 +29,7 @@ public class SplitController : MonoBehaviour
 			}
 		}
 
-		else if (Input.GetKeyDown("m"))
+		else if (Input.GetKeyDown("f"))
 		{
 			var blobs = UController.GetSelectedUnits().Select(x => x.GetComponent<Splitting>()).Where(x => x != null);
 			//Splitting.Combine(blobs);

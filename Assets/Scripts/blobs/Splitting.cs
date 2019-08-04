@@ -3,15 +3,17 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Life))]
 public class Splitting : MonoBehaviour
 {
-
+    
 	private Life lifePool;
 	public double scaleFactor = 2.0;
+    public double SpeedScaleFactor = 1.5;
 
-	private UnitController UController;
+    private UnitController UController;
 
 	private int lastFrameHP = 0;
 
@@ -45,8 +47,9 @@ public class Splitting : MonoBehaviour
 		GameObject child1 = Instantiate(gameObject);
 		child1.GetComponent<Life>().HP = lifePool.HP / 2;
 		child1.GetComponent<Transform>().position += offset;
+        
 
-		GameObject child2 = Instantiate(gameObject);
+        GameObject child2 = Instantiate(gameObject);
 		child2.GetComponent<Life>().HP = (lifePool.HP + 1) / 2;
 		child2.GetComponent<Transform>().position -= offset;
 
@@ -192,13 +195,26 @@ public class Splitting : MonoBehaviour
 	{
 		Transform transform = GetComponent<Transform>();
 		double volFactor = (double)lifePool.HP * scaleFactor;
-		//scaleFactor = Math.Pow(volFactor, (double)1 / 3);
-		transform.localScale = Vector3.one * (float)Math.Pow(volFactor, (double)1 / 2);
+        double speedFactor = Mathf.Pow(lifePool.HP, (float)SpeedScaleFactor);
+        //scaleFactor = Math.Pow(volFactor, (double)1 / 3);
+        transform.localScale = Vector3.one * (float)Math.Pow(volFactor, (double)1 / 2);
 
 		Rigidbody body = GetComponent<Rigidbody>();
-		if (body != null)
+        NavMeshAgent nav = GetComponent<NavMeshAgent>();
+        float baseSpeed = GetComponent<MoveableUnit>().baseSpeed;
+        if (body != null)
 		{
 			body.mass = (float)volFactor;
-		}
-	}
+            
+
+        }
+        if (nav != null)
+        {
+            nav.speed = (float) baseSpeed/ (float)speedFactor;
+
+
+        }
+
+
+    }
 }

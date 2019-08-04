@@ -7,6 +7,7 @@ public class FacePlayer : MonoBehaviour
     public float SearchRadius;
     public float RotationSpeed;
 	  public string PlayerTag = "Blob";
+	public GameObject TurnObject;
 
 	  float distToNearest;
     GameObject target;
@@ -44,12 +45,12 @@ public class FacePlayer : MonoBehaviour
         if (target != null)
         {
             Vector3 targetPos = target.transform.position;
-            targetPos.y = transform.position.y;
-            Vector3 targetDir = targetPos - transform.position;
+            targetPos.y = TurnObject.transform.position.y;
+            Vector3 targetDir = targetPos - TurnObject.transform.position;
 
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, RotationSpeed, 0.0f);
+            Vector3 newDir = Vector3.RotateTowards(TurnObject.transform.forward, targetDir, RotationSpeed, 0.0f);
 
-            transform.rotation = Quaternion.LookRotation(newDir);
+			TurnObject.transform.rotation = Quaternion.LookRotation(newDir);
         }
 
     }

@@ -14953,6 +14953,7 @@ GameObject:
   - component: {fileID: 565923608028585025}
   - component: {fileID: 3633294230951916322}
   - component: {fileID: 7486447480783375393}
+  - component: {fileID: 2284584021635755328}
   m_Layer: 0
   m_Name: Officer
   m_TagString: Enemy
@@ -15059,8 +15060,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0894ee600195b5a42827fb6f7e079598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SearchRadius: 0
-  BackingDistance: 0
+  SearchRadius: 4
+  BackingDistance: 2
   PlayerTag: Blob
   BackingTarget: {fileID: 0}
 --- !u!114 &565923608028585025
@@ -15109,6 +15110,22 @@ MonoBehaviour:
   damage: 5
   fireCooldown: 0.6
   bulletVelocity: 300
+--- !u!114 &2284584021635755328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5033406487585474218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f670f7ea32186e11eafe1aef86d07f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SearchRadius: 5
+  Tag: Blob
+  defaultTarget: {fileID: 0}
+  AutoAttack: 1
 --- !u!1 &8175437167807526011
 GameObject:
   m_ObjectHideFlags: 0

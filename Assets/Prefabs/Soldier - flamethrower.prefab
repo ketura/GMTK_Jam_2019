@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1541611895102098632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5536351805183784829}
+  - component: {fileID: 1600831741693822756}
+  m_Layer: 0
+  m_Name: Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5536351805183784829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541611895102098632}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7342588879022599934}
+  - {fileID: 4048284705028004812}
+  - {fileID: 3774151666194985542}
+  - {fileID: 4401594131544100141}
+  m_Father: {fileID: 6920556325453856565}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &1600831741693822756
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541611895102098632}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.69, y: 1.41, z: 0.7}
+  m_Center: {x: -0.23, y: 0, z: 0}
 --- !u!1 &2957696664198528064
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,12 +72,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2957696664198528064}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.525, y: -0.049, z: 0.094}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.9375, y: -0.049000025, z: 0.1365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3774151666194985542}
-  m_RootOrder: 0
+  m_Father: {fileID: 5536351805183784829}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6147846401280426928
 MonoBehaviour:
@@ -81,7 +129,7 @@ Transform:
   m_LocalPosition: {x: -0.29519776, y: -0.100000024, z: 0.04805985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6920556325453856565}
+  m_Father: {fileID: 5536351805183784829}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &8470800291528015795
@@ -14366,9 +14414,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.41250002, y: 0, z: 0.042500004}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4401594131544100141}
-  m_Father: {fileID: 6920556325453856565}
+  m_Children: []
+  m_Father: {fileID: 5536351805183784829}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3774151666194985537
@@ -91713,6 +91760,7 @@ GameObject:
   - component: {fileID: 5524667290922686294}
   - component: {fileID: 9024597970608089187}
   - component: {fileID: 2740510313091501100}
+  - component: {fileID: 781203044818488189}
   m_Layer: 0
   m_Name: Soldier - flamethrower
   m_TagString: Untagged
@@ -91731,9 +91779,7 @@ Transform:
   m_LocalPosition: {x: 0.2, y: 0.6, z: -0.125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7342588879022599934}
-  - {fileID: 4048284705028004812}
-  - {fileID: 3774151666194985542}
+  - {fileID: 5536351805183784829}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -91840,6 +91886,7 @@ MonoBehaviour:
   SearchRadius: 5
   RotationSpeed: 1
   PlayerTag: Blob
+  TurnObject: {fileID: 3897657763072504557}
   defaultTarget: {fileID: 0}
 --- !u!114 &9024597970608089187
 MonoBehaviour:
@@ -91871,6 +91918,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e309799984db437439a06f20408f5b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &781203044818488189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3897657763072504557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f670f7ea32186e11eafe1aef86d07f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SearchRadius: 3
+  Tag: "Blob\x13"
+  defaultTarget: {fileID: 0}
+  AutoAttack: 1
 --- !u!1 &6973413729276240566
 GameObject:
   m_ObjectHideFlags: 0
@@ -91883,7 +91946,6 @@ GameObject:
   - component: {fileID: 4837871382891927981}
   - component: {fileID: 8436482229593961327}
   - component: {fileID: 3548793456479829037}
-  - component: {fileID: 2472399932385966592}
   m_Layer: 0
   m_Name: Face (1)
   m_TagString: Untagged
@@ -91902,7 +91964,7 @@ Transform:
   m_LocalPosition: {x: -0.2, y: 0.19999999, z: 0.125}
   m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6920556325453856565}
+  m_Father: {fileID: 5536351805183784829}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4837871382891927981
@@ -92165,17 +92227,3 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!64 &2472399932385966592
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6973413729276240566}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}

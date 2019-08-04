@@ -6,7 +6,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    public IEnumerable<SelectionType> validTargets;
+    // public SelectionType[] validTargets;
     public GameObject bulletPrefab;
     public Transform muzzle;
     public int damage;
@@ -32,10 +32,11 @@ public class Weapon : MonoBehaviour
 
     public virtual void Fire(GameObject target)
     {
+        // print($"{gameObject} attempting to fire; can = {CanFire}");
         if (!CanFire) return;
 
         Unit unit = target.GetComponent<Unit>();
-        if (unit == null || validTargets.Contains(unit.SelectionType)) return;
+        // if (unit == null || !validTargets.Contains(unit.SelectionType)) return;
 
         GameObject bullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.identity);
 
@@ -52,5 +53,9 @@ public class Weapon : MonoBehaviour
 
         bullet.GetComponent<Bullet>().damage = Damage();
         bullet.GetComponent<Bullet>().shooter = gameObject;
+
+        // Reset timer
+        lastFired = Time.time;
+        // print($"{gameObject} fired!");
     }
 }
