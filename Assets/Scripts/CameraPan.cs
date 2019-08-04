@@ -10,6 +10,10 @@ public class CameraPan : MonoBehaviour
 	public float MaxZoom = 80.0f;
 	public float ZoomStep = 10.0f;
 	public float CurrentZoom;
+	public float MinX = -100;
+	public float MaxX = 100;
+	public float MinZ = -100;
+	public float MaxZ = 100;
 
 	public float HoverLevel = 10;
 	public float HoverAcceleration = 1.0f;
@@ -84,6 +88,26 @@ public class CameraPan : MonoBehaviour
 				this.transform.Translate(0, HoverAcceleration * Time.deltaTime, 0, Space.World);
 			}
 
+		}
+
+		if (AttachedCamera.transform.position.x < MinX)
+		{
+			AttachedCamera.transform.position = new Vector3(MinX, AttachedCamera.transform.position.y, AttachedCamera.transform.position.z);
+		}
+
+		if (AttachedCamera.transform.position.x > MaxX)
+		{
+			AttachedCamera.transform.position = new Vector3(MaxX, AttachedCamera.transform.position.y, AttachedCamera.transform.position.z);
+		}
+
+		if (AttachedCamera.transform.position.z < MinZ)
+		{
+			AttachedCamera.transform.position = new Vector3(AttachedCamera.transform.position.x, AttachedCamera.transform.position.y, MinZ);
+		}
+
+		if (AttachedCamera.transform.position.z > MaxZ)
+		{
+			AttachedCamera.transform.position = new Vector3(AttachedCamera.transform.position.x, AttachedCamera.transform.position.y, MaxZ);
 		}
 	}
 }
