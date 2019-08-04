@@ -14752,6 +14752,7 @@ MonoBehaviour:
   SearchRadius: 5
   RotationSpeed: 1
   PlayerTag: Blob
+  TurnObject: {fileID: 5642807095505705831}
   defaultTarget: {fileID: 0}
 --- !u!114 &5482581785777119492
 MonoBehaviour:
@@ -14896,6 +14897,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2247609850227851379}
+  - component: {fileID: 1386742026117041529}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -14911,7 +14913,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6235913401916605749}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8044439282676923229}
@@ -14920,6 +14922,19 @@ Transform:
   m_Father: {fileID: 8244589679229859535}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &1386742026117041529
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6235913401916605749}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.69, y: 1.41, z: 0.7}
+  m_Center: {x: -0.23, y: 0, z: 0}
 --- !u!1 &9079536664856346098
 GameObject:
   m_ObjectHideFlags: 0
