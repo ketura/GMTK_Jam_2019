@@ -14713,6 +14713,7 @@ GameObject:
   - component: {fileID: 2251573548362508375}
   - component: {fileID: 6749595267047391593}
   - component: {fileID: 6368131350911898067}
+  - component: {fileID: 3738806752263088545}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Enemy
@@ -14870,6 +14871,22 @@ MonoBehaviour:
   damage: 1
   fireCooldown: 1
   bulletVelocity: 300
+--- !u!114 &3738806752263088545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5642807095505705831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f670f7ea32186e11eafe1aef86d07f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SearchRadius: 5
+  Tag: Blob
+  defaultTarget: {fileID: 0}
+  AutoAttack: 1
 --- !u!1 &6235913401916605749
 GameObject:
   m_ObjectHideFlags: 0
