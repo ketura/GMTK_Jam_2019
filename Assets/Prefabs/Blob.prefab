@@ -325,15 +325,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869f3e73a2e826d11b0f413d6375ab3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 1692123624466640584, guid: 467bd5a61b587bcfeb244fd66ebd08db,
+    type: 3}
   muzzle: {fileID: 6830486874246783871}
-  damage: 0
+  damage: 1
   fireCooldown: 1
   bulletVelocity: 20
-  LifeCost: 3
+  LifeCost: 1
   DamagePerLife: 0
   lifePool: {fileID: 0}
->>>>>>> 91e84640c16df98df9acdfc1c175aeaaab869167
 --- !u!1 &7183461138183724211
 GameObject:
   m_ObjectHideFlags: 0
