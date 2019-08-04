@@ -53,6 +53,9 @@ public class Weapon : MonoBehaviour
 
         bullet.GetComponent<Bullet>().damage = Damage();
         bullet.GetComponent<Bullet>().shooter = gameObject;
+
+        // Reset timer
+        lastFired = Time.time;
         // print($"{gameObject} fired!");
     }
 }
