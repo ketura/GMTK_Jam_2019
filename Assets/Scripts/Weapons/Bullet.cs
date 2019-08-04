@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehavior
+public class Bullet : MonoBehaviour
 {
     // Will be set by the Weapon when shooting
     public int damage;
