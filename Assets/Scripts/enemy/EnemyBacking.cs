@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacePlayer : MonoBehaviour
+public class EnemyBacking : MonoBehaviour
 {
     [SerializeField] float radius;
-    [SerializeField] float speed;
     float distToNearest;
     GameObject target;
-    static string PlayerTag ="Blob";
-    [SerializeField] GameObject defaultTarget;
+    [SerializeField] float distance;
+    static string PlayerTag = "Blob";
+    Vector3 targetpoint;
+    public GameObject gizmo;
+    bool enemyNearby;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,37 +22,35 @@ public class FacePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
         Collider[] thingsInRadius = Physics.OverlapSphere(transform.position, radius);
         distToNearest = radius;
-        target = defaultTarget;
+        target = null;
+        enemyNearby = false;
+        
         foreach (Collider c in thingsInRadius)
         {
             if (c.tag != PlayerTag)
             {
-                    continue;
+               
+                continue;
             }
-
             Vector3 distance= transform.position - c.gameObject.transform.position;
             if (distToNearest >= distance.magnitude) {
                 distToNearest = distance.magnitude;
                 target = c.gameObject;
-                
+                enemyNearby = true;
             }
 
-           
+            
 
         }
-        if (target != null)
-        {
+        if (target != null) {
+
             Vector3 targetPos = target.transform.position;
             targetPos.y = transform.position.y;
-            Vector3 targetDir = targetPos - transform.position;
-
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, speed, 0.0f);
-
-            transform.rotation = Quaternion.LookRotation(newDir);
+            Vector3 targetpoint = transform.position - (targetPos - transform.position).normalized*distance;
+           
         }
-
     }
-
 }
