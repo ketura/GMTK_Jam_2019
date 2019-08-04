@@ -1181,6 +1181,16 @@ PrefabInstance:
       propertyPath: SearchRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2251573548362508375, guid: b0cc13ab119a3274db1a8531345d421f,
+        type: 3}
+      propertyPath: HP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251573548362508375, guid: b0cc13ab119a3274db1a8531345d421f,
+        type: 3}
+      propertyPath: StartingHP
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0cc13ab119a3274db1a8531345d421f, type: 3}
 --- !u!1 &1209305824 stripped
@@ -1217,7 +1227,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-427702
+  m_Name: pb_Mesh-16938
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1471,7 +1481,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-427700
+  m_Name: pb_Mesh-16936
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1634,7 +1644,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-427704
+  m_Name: pb_Mesh-16940
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
