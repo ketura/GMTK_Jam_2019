@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7183461136251659927}
   m_Layer: 8
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Blob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2039342276977133472}
   m_Layer: 8
   m_Name: Blob
-  m_TagString: Untagged
+  m_TagString: Blob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,7 +196,7 @@ Rigidbody:
   m_GameObject: {fileID: 7183461136967619318}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 2
+  m_Drag: 10
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce3f88a4ea1a7011914616fe4057c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleFactor: 0.1
 --- !u!1 &7183461138183724211
 GameObject:
   m_ObjectHideFlags: 0

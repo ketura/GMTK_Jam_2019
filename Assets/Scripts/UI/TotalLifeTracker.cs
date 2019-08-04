@@ -10,7 +10,7 @@ public class TotalLifeTracker : MonoBehaviour
 
     private int m_HP, m_StartingHP;
 
-    public string tag;
+    public string TargetTag;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class TotalLifeTracker : MonoBehaviour
     {
         m_HP = 0;
         m_StartingHP = 0;
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(tag))
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(TargetTag))
         {
             Life life = obj.GetComponent<Life>();
             if (life == null) continue;

@@ -9,7 +9,7 @@ public class Splitting : MonoBehaviour
 {
 
 	private Life lifePool;
-	private double scaleFactor;
+	public double scaleFactor = 2.0;
 
 	private UnitController UController;
 
@@ -54,7 +54,7 @@ public class Splitting : MonoBehaviour
 		UController.RemoveUnitFromSelection(unit);
 		UController.RemoveUnit(unit);
 
-		var target = unit.GetComponent<MoveableUnit>()?.Target;
+		var target = unit.GetComponent<MoveableUnit>()?.Waypoint;
 
 		unit = child1.GetComponent<Unit>();
 		UController.AddUnitToSelection(unit);
@@ -73,6 +73,67 @@ public class Splitting : MonoBehaviour
 
 
 		Destroy(gameObject);
+	}
+
+	public static void ShuffleAndCombine(IEnumerable<Splitting> blobs, float distanceThreshold, int healthPerUnitLeeway)
+	{
+		Dictionary<Splitting, Splitting> pairs = new Dictionary<Splitting, Splitting>();
+		Dictionary<Splitting, HashSet<Splitting>> rejects = new Dictionary<Splitting, HashSet<Splitting>>();
+
+		var XBlobs = blobs.ToList();
+		var ZBlobs = blobs.ToList();
+		XBlobs.Sort((a, b) => a.transform.position.x.CompareTo(b.transform.position.x));
+		ZBlobs.Sort((a, b) => a.transform.position.z.CompareTo(b.transform.position.z));
+
+		for(int i = 0; i < XBlobs.Count; i++)
+		{
+			var blob = XBlobs[i];
+			if (pairs.ContainsKey(blob))
+				continue;
+
+			for(int j = i + 1; j < XBlobs.Count; j++)
+			{
+				var otherblob = XBlobs[j];
+
+				if ((rejects.ContainsKey(blob) && rejects[blob].Contains(otherblob)) || (rejects.ContainsKey(otherblob) && rejects[otherblob].Contains(blob)))
+					continue;
+
+				float leeway = (float)(blob.lifePool.HP + otherblob.lifePool.HP) / healthPerUnitLeeway;
+
+				if(Vector3.Distance(blob.transform.position, otherblob.transform.position) < distanceThreshold + leeway)
+				{
+					pairs[blob] = otherblob;
+					pairs[otherblob] = blob;
+					break;
+				}
+				else
+				{
+					if(!rejects.ContainsKey(blob))
+					{
+						rejects[blob] = new HashSet<Splitting>();
+					}
+					if(!rejects.ContainsKey(otherblob))
+					{
+						rejects[otherblob] = new HashSet<Splitting>();
+					}
+					rejects[blob].Add(otherblob);
+					rejects[otherblob].Add(blob);
+				}
+			}
+		}
+
+		List<Splitting> completed = new List<Splitting>();
+
+		foreach(var pair in pairs)
+		{
+			if (completed.Contains(pair.Key) || completed.Contains(pair.Value))
+				continue;
+
+			completed.Add(pair.Key);
+			completed.Add(pair.Value);
+			Combine(new List<Splitting>() { pair.Key, pair.Value });
+			
+		}
 	}
 
 	// Combine the attached GameObject with another one. Life and momenta are combined.
@@ -107,7 +168,7 @@ public class Splitting : MonoBehaviour
 		Unit combinedUnit = combined.GetComponent<Unit>();
 
 
-		var target = blobs.Select(x => x.GetComponent<MoveableUnit>().Target).FirstOrDefault();
+		var target = blobs.Select(x => x.GetComponent<MoveableUnit>().Waypoint).FirstOrDefault();
 		if (target != null)
 		{
 			combinedUnit.GetComponent<MoveableUnit>().SetNewDestination(target);
@@ -117,7 +178,7 @@ public class Splitting : MonoBehaviour
 		foreach (var blob in blobs.ToList())
 		{
 			var unit = blob.GetComponent<Unit>();
-			unit.GetComponent<MoveableUnit>()?.Target?.RemoveTargetingUnit(unit);
+			unit.GetComponent<MoveableUnit>()?.Waypoint?.RemoveTargetingUnit(unit);
 			UController.RemoveUnitFromSelection(unit);
 			UController.RemoveUnit(unit);
 			Destroy(blob.gameObject);
@@ -130,9 +191,9 @@ public class Splitting : MonoBehaviour
 	private void ScaleVolumeAndMass()
 	{
 		Transform transform = GetComponent<Transform>();
-		double volFactor = (double)lifePool.HP / lifePool.StartingHP;
-		scaleFactor = Math.Pow(volFactor, (double)1 / 3);
-		transform.localScale = Vector3.one * (float)scaleFactor;
+		double volFactor = (double)lifePool.HP * scaleFactor;
+		//scaleFactor = Math.Pow(volFactor, (double)1 / 3);
+		transform.localScale = Vector3.one * (float)Math.Pow(volFactor, (double)1 / 2);
 
 		Rigidbody body = GetComponent<Rigidbody>();
 		if (body != null)

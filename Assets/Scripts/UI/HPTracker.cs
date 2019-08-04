@@ -7,17 +7,17 @@ public class HPTracker : MonoBehaviour
 {
 
     public Life PoolToTrack;
-    private RectTransform transform;
+    private RectTransform RT;
     // Start is called before the first frame update
     void Start()
     {
-        transform = GetComponent<RectTransform>();
+        RT = GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
     void Update()
     {
         float ratio = (float) PoolToTrack.HP / PoolToTrack.StartingHP;
-        transform.anchorMax = new Vector2(ratio, transform.anchorMax.y);
+        RT.anchorMax = new Vector2(ratio, RT.anchorMax.y);
     }
 }
