@@ -18,4 +18,9 @@ public class Life : MonoBehaviour
 	{
 		
 	}
+
+	public void Damage(int amount)
+	{
+		HP -= amount;
+	}
 }
