@@ -12,8 +12,9 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         GameObject target = other.gameObject;
-        Unit targetUnit = target.GetComponent<Unit>();
-        Life targetLife = target.GetComponent<Life>();
+
+        Unit targetUnit = target.GetComponentInParent<Unit>();
+        Life targetLife = target.GetComponentInParent<Life>();
 
         Destroy(gameObject);
 
