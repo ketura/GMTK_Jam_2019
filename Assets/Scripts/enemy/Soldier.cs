@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyBacking))]
 [RequireComponent(typeof(FacePlayer))]
 [RequireComponent(typeof(Unit))]
+[RequireComponent(typeof(Weapon))]
 public class Soldier : MonoBehaviour
 {
 	private UnitController UController;

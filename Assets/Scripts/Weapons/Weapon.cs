@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
 
     public IEnumerable<SelectionType> validTargets;
@@ -13,6 +13,7 @@ public abstract class Weapon : MonoBehaviour
     public float fireCooldown;
     public float bulletVelocity;
     private int lastFired;
+    public bool CanFire => Time.time > lastFired + fireCooldown;
 
     public void Start()
     {
@@ -31,7 +32,7 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void Fire(GameObject target)
     {
-        if (Time.time < lastFired + fireCooldown) return;
+        if (!CanFire) return;
 
         Unit unit = target.GetComponent<Unit>();
         if (unit == null || validTargets.Contains(unit.SelectionType)) return;
@@ -50,6 +51,6 @@ public abstract class Weapon : MonoBehaviour
         }
 
         bullet.GetComponent<Bullet>().damage = Damage();
-        bullet.GetComponent<Bullet>().shooter = GetComponent<Unit>();
+        bullet.GetComponent<Bullet>().shooter = gameObject;
     }
 }
