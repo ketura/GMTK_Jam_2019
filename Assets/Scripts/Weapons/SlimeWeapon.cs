@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,7 @@ using UnityEngine;
 public class SlimeWeapon : Weapon
 {
     public int LifeCost;
-    public int DamagePerLife;
-    public override int damage => (GetComponent<Life>().HP + DamagePerLife - 1) / DamagePerLife;
+    public float DamagePerLife;
     public Life lifePool;
 
     void Start()
@@ -19,7 +19,12 @@ public class SlimeWeapon : Weapon
         }
     }
 
-    override void Fire(GameObject target)
+    public override int Damage()
+    {
+        return (int) Math.Floor((float) GetComponent<Life>().HP / DamagePerLife);
+    }
+
+    public override void Fire(GameObject target)
     {
         if (lifePool.HP <= LifeCost) return;
         base.Fire(target);

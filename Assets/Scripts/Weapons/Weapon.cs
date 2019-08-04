@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,15 +6,15 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
 
-    public readonly SelectionType[] validTargets;
+    public IEnumerable<SelectionType> validTargets;
     public GameObject bulletPrefab;
     public Transform muzzle;
-    public virtual int damage;
+    public int damage;
     public float fireCooldown;
     public float bulletVelocity;
     private int lastFired;
 
-    void Start()
+    public void Start()
     {
 
     }
@@ -23,23 +24,32 @@ public abstract class Weapon : MonoBehaviour
 
     }
 
-    virtual void Fire(GameObject target)
+    public virtual int Damage()
+    {
+        return damage;
+    }
+
+    public virtual void Fire(GameObject target)
     {
         if (Time.time < lastFired + fireCooldown) return;
 
         Unit unit = target.GetComponent<Unit>();
-        if (unit == null || !Array.Exists(validTargets, ty => ty == unit.SelectionType)) return;
+        if (unit == null || validTargets.Contains(unit.SelectionType)) return;
 
         GameObject bullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.identity);
 
         Vector3 dr = target.GetComponent<Transform>().position - muzzle.position;
+        bullet.GetComponent<Rigidbody>().velocity = dr.normalized * bulletVelocity;
 
         // Compensate for gravity to make sure we can actually hit the target
-        float dt = dr.magnitude / bulletVelocity;
-        float dropoff = bullet.GetComponent<Rigidbody>().useGravity ? dt * Physics.gravity : 0;
+        if (bullet.GetComponent<Rigidbody>().useGravity)
+        {
+            float dt = dr.magnitude / bulletVelocity;
+            Vector3 dropoff = Physics.gravity * dt;
+            bullet.GetComponent<Rigidbody>().velocity -= dropoff / dt;
+        }
 
-        bullet.GetComponent<Rigidbody>().velocity = dr.normalized * bulletVelocity - dropoff / dt;
-        bullet.GetComponent<Bullet>().damage = damage;
-        bullet.GetComponent<Bullet>().shooter = gameObject;
+        bullet.GetComponent<Bullet>().damage = Damage();
+        bullet.GetComponent<Bullet>().shooter = GetComponent<Unit>();
     }
 }
