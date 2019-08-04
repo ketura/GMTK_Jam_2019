@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class CommandController : MonoBehaviour
+using Utilities;
+public class CommandController : Singleton<CommandController>
 {
 	private UnitController UController;
 
 	public LayerMask ClickableMask;
 	public LayerMask EnemyMask;
 	public LayerMask GroundMask;
+
+	public AudioClip[] SlimeNoises;
 
 	// Start is called before the first frame update
 	void Start()
@@ -64,7 +66,17 @@ public class CommandController : MonoBehaviour
 				{
 					UController.ToggleSelection(unit);
 				}
+
+				int random = Random.Range(0, SlimeNoises.Length);
+				AudioManager.Instance.PlayClip(SlimeNoises[random]);
 			}
+
+			
+		}
+
+		if(Input.GetButtonUp("Action"))
+		{
+			PlaySlimeSound();
 		}
 	}
 
@@ -111,6 +123,12 @@ public class CommandController : MonoBehaviour
 		{
 			IssueMoveCommand(u, target);
 		}
+	}
+
+	public void PlaySlimeSound()
+	{
+		int random = Random.Range(0, SlimeNoises.Length);
+		AudioManager.Instance.PlayClip(SlimeNoises[random]);
 	}
 
 }

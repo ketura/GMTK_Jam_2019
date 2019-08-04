@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Utilities;
 
-public class SplitController : MonoBehaviour
+public class SplitController : Singleton<SplitController>
 {
 	UnitController UController;
 	public float CombineDistance = 2.0f;
 	public int HealthPerUnitLeeway = 30;
+
+	public AudioClip SplitSound;
+	public AudioClip MergeSound;
+
     // Start is called before the first frame update
 	void Start()
 	{
@@ -27,6 +32,7 @@ public class SplitController : MonoBehaviour
 
 				blob.Split();
 			}
+			AudioManager.Instance.PlayClip(SplitSound);
 		}
 
 		else if (Input.GetKeyDown("f"))
@@ -34,6 +40,7 @@ public class SplitController : MonoBehaviour
 			var blobs = UController.GetSelectedUnits().Select(x => x.GetComponent<Splitting>()).Where(x => x != null);
 			//Splitting.Combine(blobs);
 			Splitting.ShuffleAndCombine(blobs, CombineDistance, HealthPerUnitLeeway);
+			
 		}
 	}
 

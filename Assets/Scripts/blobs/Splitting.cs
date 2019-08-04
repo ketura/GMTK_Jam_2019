@@ -127,6 +127,8 @@ public class Splitting : MonoBehaviour
 
 		List<Splitting> completed = new List<Splitting>();
 
+		bool played = false;
+
 		foreach(var pair in pairs)
 		{
 			if (completed.Contains(pair.Key) || completed.Contains(pair.Value))
@@ -135,6 +137,12 @@ public class Splitting : MonoBehaviour
 			completed.Add(pair.Key);
 			completed.Add(pair.Value);
 			Combine(new List<Splitting>() { pair.Key, pair.Value });
+
+			if(!played)
+			{
+				AudioManager.Instance.PlayClip(SplitController.Instance.MergeSound);
+				played = true;
+			}
 			
 		}
 	}

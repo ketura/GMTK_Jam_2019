@@ -70,7 +70,9 @@ public class SelectionController : Singleton<SelectionController>
 					return;
 				}
 
-				if(ctrl)
+				PlaySound();
+
+				if (ctrl)
 				{
 					UController.ToggleSelection(unit);
 				}
@@ -201,6 +203,10 @@ public class SelectionController : Singleton<SelectionController>
 		else if(Input.GetButtonUp("Select"))
 		{
 			SelectionBox.gameObject.SetActive(false);
+			if(TempSelection.Count > 0)
+			{
+				PlaySound();
+			}
 
 		}
 
@@ -208,5 +214,10 @@ public class SelectionController : Singleton<SelectionController>
 
 
 	
+	}
+
+	private void PlaySound()
+	{
+		CommandController.Instance.PlaySlimeSound();
 	}
 }
