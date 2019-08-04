@@ -1370,6 +1370,16 @@ PrefabInstance:
       propertyPath: MaxZ
       value: -7
       objectReference: {fileID: 0}
+    - target: {fileID: 8579102873082389643, guid: 128d6d98db1481f4bb27817e2fb471f7,
+        type: 3}
+      propertyPath: PanFactors.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579102873082389643, guid: 128d6d98db1481f4bb27817e2fb471f7,
+        type: 3}
+      propertyPath: PanFactors.y
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 128d6d98db1481f4bb27817e2fb471f7, type: 3}
 --- !u!1 &645461569

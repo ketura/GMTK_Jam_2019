@@ -3,7 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour
 {
-    public void GotoMainMenu()
+	private void Start()
+	{
+		Screen.fullScreen = false;
+	}
+	public void GotoMainMenu()
     {
         SceneManager.LoadScene("mainmenu");
     }
