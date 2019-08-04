@@ -690,6 +690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c473a7cf9ec0267b38e401c7fe709a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CombineDistance: 1
+  HealthPerUnitLeeway: 50
 --- !u!1 &1345386114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,7 +1277,7 @@ PrefabInstance:
     - target: {fileID: 7183461136967619317, guid: 54df89ae9ab1ee24ab9eb1f5b0569f5d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: 1.98
       objectReference: {fileID: 0}
     - target: {fileID: 7183461136967619317, guid: 54df89ae9ab1ee24ab9eb1f5b0569f5d,
         type: 3}
@@ -1326,6 +1328,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723045394627179770, guid: 54df89ae9ab1ee24ab9eb1f5b0569f5d,
+        type: 3}
+      propertyPath: HP
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54df89ae9ab1ee24ab9eb1f5b0569f5d, type: 3}
