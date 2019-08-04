@@ -189,7 +189,8 @@ GameObject:
   - component: {fileID: 7183461136967619305}
   - component: {fileID: 5723045394627179770}
   - component: {fileID: 2039342276977133472}
-  - component: {fileID: 484848319389676786}
+  - component: {fileID: 945314600356950588}
+  - component: {fileID: 1070119593910321878}
   m_Layer: 8
   m_Name: Blob
   m_TagString: Blob
@@ -314,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleFactor: 0.3
+--- !u!114 &945314600356950588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -330,10 +332,27 @@ MonoBehaviour:
   muzzle: {fileID: 6830486874246783871}
   damage: 1
   fireCooldown: 1
-  bulletVelocity: 20
+  bulletVelocity: 100
   LifeCost: 1
-  DamagePerLife: 0
-  lifePool: {fileID: 0}
+  BonusDamagePerLife: 0.5
+  BlobSpawnChance: 0.3
+  lifePool: {fileID: 5723045394627179770}
+--- !u!114 &1070119593910321878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7183461136967619318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f670f7ea32186e11eafe1aef86d07f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SearchRadius: 0
+  Tag: Enemy
+  defaultTarget: {fileID: 0}
+  AutoAttack: 1
 --- !u!1 &7183461138183724211
 GameObject:
   m_ObjectHideFlags: 0
