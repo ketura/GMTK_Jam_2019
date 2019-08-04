@@ -190,7 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Start
+  m_Text: Quit
 --- !u!222 &527038542
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -374,8 +374,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152734770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -74, z: -6}
-  m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.79999995}
+  m_LocalPosition: {x: 0, y: -83, z: -6}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1834863353}
   m_RootOrder: 1
@@ -388,9 +388,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152734770}
-  m_Text: "Foolish humans, too young to the galaxy to remember \r\nyou, have unsealed
-    you by accident, and now you \r\nare free to devour again.\r\n\r\nAll is One.
-    All will be One."
+  m_Text: Thanks for playing!
   m_OffsetZ: 0
   m_CharacterSize: 3
   m_LineSpacing: 0.8
@@ -524,7 +522,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1277377179}
-        m_MethodName: GotoFirstLevel
+        m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -583,6 +581,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1277377180}
   - component: {fileID: 1277377179}
+  - component: {fileID: 1277377182}
+  - component: {fileID: 1277377181}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -616,6 +616,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1277377181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277377178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90f0c6d07c304ba0407261e89ed76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1277377182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277377178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52557872128670947af59904a944931c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1692974348
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +758,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815638475}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 97, z: -6}
+  m_LocalPosition: {x: 0, y: 83, z: -6}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.25}
   m_Children: []
   m_Father: {fileID: 1834863353}
@@ -748,10 +772,20 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815638475}
-  m_Text: "RTS controls: click to select, click-drag to box-select, \nshift + click
-    to add to selection, ctrl + click to toggle.\r\n\r\nRight-click to move/auto-attack.\r\n\r\nUse
-    S to Split.\r\n\r\nUse F to Merge.\r\n\r\nUse middle mouse button or the arrow
-    keys \nto move the camera.\r\n"
+  m_Text: 'ketura - mechanics, scripting, management
+
+    Mink - visuals, audio, level design
+
+    Victini - AI, scripting
+
+    Solonarv - scripting
+
+    Sparkwitch - music
+
+
+
+
+    Please see credits.txt for full asset attribution'
   m_OffsetZ: 0
   m_CharacterSize: 3
   m_LineSpacing: 0.8
