@@ -10,7 +10,7 @@ public class MoveableUnit : MonoBehaviour
 	public Waypoint Waypoint;
 
 	public bool MovementActive = true;
-
+    public float baseSpeed;
 	public float DefaultArrivalThreshold = 0.1f;
 	public float MovementThreshold = 0.01f;
 	public float ArrivalThreshold = 0.1f;
