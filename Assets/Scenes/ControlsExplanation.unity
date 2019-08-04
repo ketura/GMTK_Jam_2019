@@ -382,10 +382,10 @@ RectTransform:
   m_Father: {fileID: 1834863353}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -190}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0.50165015, y: 0.13055134}
+  m_AnchorMax: {x: 0.50165015, y: 0.13055134}
+  m_AnchoredPosition: {x: 2.5, y: -0.98883057}
+  m_SizeDelta: {x: 94.828, y: 25.245003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246527872
 MonoBehaviour:
@@ -655,9 +655,9 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815638475}
-  m_Text: "Direct your blobs where to go with the left mouse button.\n\nUse S to Split.\n\nUse
-    M to Merge.\n\nUse middle mouse button or \nthe arrow keys to move the camera
-    around\n\n"
+  m_Text: "Click and drag to select your blobs.\n\nTell them where to go with the
+    right mouse button.\n\nUse S to Split.\n\nUse M to Merge.\n\nUse middle mouse
+    button or \nthe arrow keys to move the camera around\n\n"
   m_OffsetZ: 0
   m_CharacterSize: 3
   m_LineSpacing: 0.8

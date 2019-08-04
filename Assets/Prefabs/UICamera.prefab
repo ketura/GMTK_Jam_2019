@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CombineDistance: 1
-  HealthPerUnitLeeway: 50
+  HealthPerUnitLeeway: 20
 --- !u!1 &6364266611422686144
 GameObject:
   m_ObjectHideFlags: 0
