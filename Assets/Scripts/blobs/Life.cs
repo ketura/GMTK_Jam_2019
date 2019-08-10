@@ -17,7 +17,17 @@ public class Life : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (IsDead && DestroyOnDead) Destroy(gameObject);
+		if (IsDead && DestroyOnDead)
+		{
+			Destroy(gameObject);
+			Unit unit = GetComponent<Unit>();
+			if(unit != null)
+			{
+				UnitController.Instance.RemoveUnit(unit);
+				UnitController.Instance.RemoveUnitFromSelection(unit);
+			}
+		}
+
 	}
 
 	public void Damage(int amount)

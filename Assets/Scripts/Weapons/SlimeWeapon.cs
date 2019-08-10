@@ -11,6 +11,7 @@ public class SlimeWeapon : Weapon
     public float BlobSpawnChance;
     public Life lifePool;
 
+
     void Start()
     {
         base.Start();
@@ -27,8 +28,9 @@ public class SlimeWeapon : Weapon
 
     public override void Fire(GameObject target)
     {
+		Debug.Log("Shooting");
         if (lifePool.HP <= LifeCost) return;
         base.Fire(target);
         lifePool.Damage(LifeCost);
-    }
+	}
 }

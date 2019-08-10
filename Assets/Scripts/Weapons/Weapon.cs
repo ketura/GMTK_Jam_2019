@@ -15,6 +15,8 @@ public class Weapon : MonoBehaviour
     private float lastFired;
     public bool CanFire => Time.time > lastFired + fireCooldown;
 
+	public AudioClip ShootSound;
+
     public void Start()
     {
 
@@ -36,9 +38,13 @@ public class Weapon : MonoBehaviour
         if (!CanFire) return;
 
         Unit unit = target.GetComponent<Unit>();
-        // if (unit == null || !validTargets.Contains(unit.SelectionType)) return;
+		target.GetComponentInParent<Life>().Damage(damage);
+		AudioManager.Instance.PlayClip(ShootSound);
+		lastFired = Time.time;
+		
+		// if (unit == null || !validTargets.Contains(unit.SelectionType)) return;
 
-        GameObject bullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.identity);
+		GameObject bullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.identity);
 
         Vector3 dr = target.GetComponent<Transform>().position - muzzle.position;
         bullet.GetComponent<Rigidbody>().velocity = dr.normalized * bulletVelocity;
@@ -51,11 +57,13 @@ public class Weapon : MonoBehaviour
             bullet.GetComponent<Rigidbody>().velocity -= dropoff / dt;
         }
 
-        bullet.GetComponent<Bullet>().damage = Damage();
+		bullet.GetComponent<Bullet>().damage = 0;//Damage();
         bullet.GetComponent<Bullet>().shooter = gameObject;
 
         // Reset timer
-        lastFired = Time.time;
-        // print($"{gameObject} fired!");
+        
+		// print($"{gameObject} fired!");
+
+		
     }
 }

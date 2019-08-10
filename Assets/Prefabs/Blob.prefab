@@ -381,6 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100
   StartingHP: 10
+  DestroyOnDead: 1
 --- !u!114 &2039342276977133472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,15 +408,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869f3e73a2e826d11b0f413d6375ab3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1692123624466640584, guid: 467bd5a61b587bcfeb244fd66ebd08db,
+  bulletPrefab: {fileID: 8105176519196797846, guid: 442fb46b4f29a2f42b1c3fb622195081,
     type: 3}
   muzzle: {fileID: 6830486874246783871}
   damage: 1
   fireCooldown: 1
-  bulletVelocity: 100
+  bulletVelocity: 30
+  ShootSound: {fileID: 8300000, guid: 9babcf197369e7f49a55e9d9e1f0aedc, type: 3}
   LifeCost: 1
   BonusDamagePerLife: 0.5
-  BlobSpawnChance: 0.3
+  BlobSpawnChance: 0
   lifePool: {fileID: 5723045394627179770}
 --- !u!114 &1070119593910321878
 MonoBehaviour:
@@ -471,6 +473,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7183461138183724210}
     m_Modifications:
+    - target: {fileID: 3777224221899500879, guid: 67b8238811460764b90f4465c6033ebb,
+        type: 3}
+      propertyPath: m_Name
+      value: SelectionCircle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777224221899500879, guid: 67b8238811460764b90f4465c6033ebb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6659968772229611481, guid: 67b8238811460764b90f4465c6033ebb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -524,16 +536,6 @@ PrefabInstance:
     - target: {fileID: 6659968772229611481, guid: 67b8238811460764b90f4465c6033ebb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3777224221899500879, guid: 67b8238811460764b90f4465c6033ebb,
-        type: 3}
-      propertyPath: m_Name
-      value: SelectionCircle
-      objectReference: {fileID: 0}
-    - target: {fileID: 3777224221899500879, guid: 67b8238811460764b90f4465c6033ebb,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

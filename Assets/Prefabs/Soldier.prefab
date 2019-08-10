@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1367165571220371246}
   - component: {fileID: 860929568994761291}
   - component: {fileID: 7754149707347971785}
-  - component: {fileID: 5140730020249305684}
   m_Layer: 0
   m_Name: Face
   m_TagString: Untagged
@@ -294,20 +293,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!64 &5140730020249305684
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427072772029756875}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
 --- !u!1 &1502947348310275521
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +356,7 @@ GameObject:
   - component: {fileID: 5251823304517250682}
   - component: {fileID: 3150733441079594086}
   - component: {fileID: 5228290800924267549}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Soldier Uniform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14715,7 +14700,8 @@ GameObject:
   - component: {fileID: 6368131350911898067}
   - component: {fileID: 3738806752263088545}
   - component: {fileID: 5175576226204238775}
-  m_Layer: 0
+  - component: {fileID: 8499604004340882118}
+  m_Layer: 10
   m_Name: Soldier
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -14750,7 +14736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71cd7982ac47529429641fff1276ab1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SearchRadius: 5
+  SearchRadius: 15
   RotationSpeed: 1
   PlayerTag: Blob
   TurnObject: {fileID: 5642807095505705831}
@@ -14824,6 +14810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Waypoint: {fileID: 0}
   MovementActive: 1
+  baseSpeed: 0
   DefaultArrivalThreshold: 0.1
   MovementThreshold: 0.01
   ArrivalThreshold: 0.1
@@ -14841,8 +14828,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68df4a1506b7a3242bbc3ddee08c3b26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
+  HP: 3
   StartingHP: 10
+  DestroyOnDead: 1
 --- !u!114 &6749595267047391593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14867,12 +14855,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09cdabbf31e00a2fe8bf74687df05478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1692123624466640584, guid: 467bd5a61b587bcfeb244fd66ebd08db,
+  bulletPrefab: {fileID: 6577953574876515583, guid: 6a40fb8263f0a3a49bf90d44c1a0bf7a,
     type: 3}
   muzzle: {fileID: 6136681747208907761}
   damage: 1
   fireCooldown: 1
   bulletVelocity: 300
+  ShootSound: {fileID: 8300000, guid: 4628c330f3b2f86478dcb5df45144391, type: 3}
 --- !u!114 &3738806752263088545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14885,7 +14874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f670f7ea32186e11eafe1aef86d07f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SearchRadius: 5
+  SearchRadius: 10
   Tag: Blob
   defaultTarget: {fileID: 0}
   AutoAttack: 1
@@ -14905,6 +14894,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &8499604004340882118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5642807095505705831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4ce742533db284482f5d8d642dfedc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlobPrefab: {fileID: 7183461136967619318, guid: 54df89ae9ab1ee24ab9eb1f5b0569f5d,
+    type: 3}
+  chance: 0.3
+  SpawnHP: 1
 --- !u!1 &6235913401916605749
 GameObject:
   m_ObjectHideFlags: 0
@@ -14917,7 +14922,7 @@ GameObject:
   - component: {fileID: 1386742026117041529}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

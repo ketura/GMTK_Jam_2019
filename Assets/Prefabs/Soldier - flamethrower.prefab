@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1600831741693822756}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,7 +73,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2957696664198528064}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9375, y: -0.049000025, z: 0.1365}
+  m_LocalPosition: {x: -1.476, y: -0.049000025, z: 0.1365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5536351805183784829}
@@ -91837,6 +91837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Waypoint: {fileID: 0}
   MovementActive: 1
+  baseSpeed: 0
   DefaultArrivalThreshold: 0.1
   MovementThreshold: 0.01
   ArrivalThreshold: 0.1
@@ -91856,6 +91857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 10
   StartingHP: 10
+  DestroyOnDead: 1
 --- !u!114 &8091717422979094353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91901,12 +91903,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09cdabbf31e00a2fe8bf74687df05478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1692123624466640584, guid: 467bd5a61b587bcfeb244fd66ebd08db,
+  bulletPrefab: {fileID: 6577953574876515583, guid: 6a40fb8263f0a3a49bf90d44c1a0bf7a,
     type: 3}
   muzzle: {fileID: 4401594131544100141}
   damage: 1
   fireCooldown: 0.2
   bulletVelocity: 10
+  ShootSound: {fileID: 8300000, guid: 52c69e6efd4da17449c4b3038f19977e, type: 3}
 --- !u!114 &2740510313091501100
 MonoBehaviour:
   m_ObjectHideFlags: 0

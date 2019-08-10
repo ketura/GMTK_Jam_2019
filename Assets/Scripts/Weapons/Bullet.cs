@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
         Unit targetUnit = target.GetComponentInParent<Unit>();
         Life targetLife = target.GetComponentInParent<Life>();
 
-        Destroy(gameObject);
+		StartCoroutine(DestroyDelay(1.5f));
 
         if (targetUnit != null && targetUnit.SelectionType == intendedTarget && targetLife != null)
         {
@@ -30,4 +30,11 @@ public class Bullet : MonoBehaviour
             }
         }
     }
+
+	IEnumerator DestroyDelay(float time)
+	{
+		yield return new WaitForSeconds(0);
+
+		Destroy(gameObject);
+	}
 }
